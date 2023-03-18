@@ -5,7 +5,7 @@ import com.springboot.entity.Goods;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author 文涛

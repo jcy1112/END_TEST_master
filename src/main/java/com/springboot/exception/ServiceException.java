@@ -4,6 +4,7 @@ import lombok.Getter;
 
 /**
  * 自定义异常
+ *
  * @Author jcy
  * @Date 2023/3/3 16:08
  */

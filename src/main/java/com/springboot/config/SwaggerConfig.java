@@ -31,14 +31,14 @@ public class SwaggerConfig {
                 .useDefaultResponseMessages(true)
                 .forCodeGeneration(false)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.qingge.springboot.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.springboot.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
 
     /*
      * 创建该API的基本信息（这些基本信息会展现在文档页面中）
-     * 访问地址：http://ip:port/swagger-ui.html/index.html
+     * 访问地址：http://localhost:9090/swagger-ui.html/index.html
      *
      * @return
      */

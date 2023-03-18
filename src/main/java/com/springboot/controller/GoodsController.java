@@ -29,11 +29,12 @@ public class GoodsController {
 
     /**
      * 前台商品列表，
-     * @AuthAccess  自定义注解 放行权限
+     *
      * @param name
      * @param pageNum
      * @param pageSize
      * @return
+     * @AuthAccess 自定义注解 放行权限
      */
     @AuthAccess
     @GetMapping("/front")
@@ -50,13 +51,14 @@ public class GoodsController {
 
     /**
      * 前台按照id查询商品
+     *
      * @param id
      * @return
      */
     @AuthAccess
     @GetMapping("/{id}")
     public Result findOne(@PathVariable Integer id) {
-        return Result.success("查询成功",goodsService.getById(id));
+        return Result.success("查询成功", goodsService.getById(id));
     }
 }
 

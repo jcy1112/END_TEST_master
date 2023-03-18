@@ -32,7 +32,7 @@ public class Result {
         return new Result(CodeEnum.CODE_200.getCode(), msg, null);
     }
 
-    public static Result success(String msg,Object data) {
+    public static Result success(String msg, Object data) {
         return new Result(CodeEnum.CODE_200.getCode(), msg, data);
     }
 

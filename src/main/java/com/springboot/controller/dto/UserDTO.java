@@ -2,7 +2,7 @@ package com.springboot.controller.dto;
 
 import lombok.Data;
 
-/*
+/**
  * 接受前端登录请求的参数
  */
 @Data
