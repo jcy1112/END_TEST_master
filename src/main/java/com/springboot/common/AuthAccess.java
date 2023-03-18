@@ -3,7 +3,7 @@ package com.springboot.common;
 import java.lang.annotation.*;
 
 /**
- * 自定义注解类1111111111111111111111
+ * 自定义注解类
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
