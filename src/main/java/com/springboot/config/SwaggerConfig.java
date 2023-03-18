@@ -36,18 +36,19 @@ public class SwaggerConfig {
                 .build();
     }
 
-    /*
+    /**
      * 创建该API的基本信息（这些基本信息会展现在文档页面中）
      * 访问地址：http://localhost:9090/swagger-ui.html/index.html
+     * http://localhost:9090/swagger-ui/index.html
      *
      * @return
      */
     private ApiInfo apiInfo(String title, String version) {
         return new ApiInfoBuilder()
-                .title(title)
-                .description("更多请关注: https://blog.csdn.net/xqnode")
-                .termsOfServiceUrl("https://blog.csdn.net/xqnode")
-                .contact(new Contact("xqnode", "https://blog.csdn.net/xqnode", "xiaqingweb@163.com"))
+                .title("悦淘网接口说明文档")
+                .description("更多请关注jcy")
+                .termsOfServiceUrl("")
+                .contact(new Contact("jcy", "www.jcy.com", "2032750245@qq.com"))
                 .version(version)
                 .build();
     }
