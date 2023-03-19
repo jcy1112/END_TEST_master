@@ -6,5 +6,5 @@ package com.springboot.service;
  */
 
 
-public interface UserService {
+public interface GoodService {
 }

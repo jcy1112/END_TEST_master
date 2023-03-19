@@ -5,7 +5,7 @@ import cn.hutool.core.util.StrUtil;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.springboot.entity.User;
-import com.springboot.service.UserService;
+import com.springboot.service.IUserService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -24,10 +24,10 @@ import java.util.Date;
 @Component
 public class TokenUtils {
 
-    private static UserService staticUserService;
+    private static IUserService staticUserService;
 
     @Resource
-    private UserService userService;
+    private IUserService userService;
 
     @PostConstruct
     public void setUserService() {

@@ -8,7 +8,7 @@ import com.springboot.common.CodeEnum;
 import com.springboot.common.Result;
 import com.springboot.controller.dto.UserDTO;
 import com.springboot.entity.User;
-import com.springboot.service.UserService;
+import com.springboot.service.IUserService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -25,7 +25,7 @@ import java.util.List;
 public class UserController {
 
     @Resource
-    private UserService userService;
+    private IUserService userService;
 
     /**
      * 登录
