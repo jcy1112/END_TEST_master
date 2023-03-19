@@ -29,8 +29,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     /**
      * 登录
+     *
      * @param userDTO 前端传回的信息
-     * @return
+     * @return Result
      */
     @Override
     public Result login(UserDTO userDTO) {
@@ -38,20 +39,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         queryWrapper.eq("username", userDTO.getUsername());
         User user = getOne(queryWrapper);
         //判断是否存在此用户
-        if (user != null){
+        if (user != null) {
             //判断密码是否正确
-            if (userDTO.getPassword().equals(user.getPassword())){
+            if (userDTO.getPassword().equals(user.getPassword())) {
                 BeanUtil.copyProperties(user, userDTO, true);
                 //设置token
                 String token = TokenUtils.genToken(user.getId().toString(), user.getPassword());
                 userDTO.setToken(token);
                 //密码置空，防止将密码返回前端
                 userDTO.setPassword("");
-                return Result.success("登录成功",userDTO);
-            }else{
+                return Result.success("登录成功", userDTO);
+            } else {
                 return Result.error(CodeEnum.CODE_600.getCode(), "用户名或密码错误");
             }
-        }else {
+        } else {
             return Result.error(CodeEnum.CODE_600.getCode(), "用户不存在，请注册");
         }
     }

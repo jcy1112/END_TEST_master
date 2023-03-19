@@ -1,6 +1,7 @@
 package com.springboot.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.springboot.common.CodeEnum;
 import com.springboot.common.Result;
 import com.springboot.common.AuthAccess;
 import com.springboot.service.GoodsService;
@@ -33,7 +34,7 @@ public class GoodsController {
      * @param name
      * @param pageNum
      * @param pageSize
-     * @return
+     * @return Result
      * @AuthAccess 自定义注解 放行权限
      */
     @AuthAccess
@@ -46,19 +47,27 @@ public class GoodsController {
         if (!"".equals(name)) {
             queryWrapper.like("name", name);
         }
-        return Result.success(goodsService.page(new Page<>(pageNum, pageSize), queryWrapper));
+        Page<Goods> goodsPage = goodsService.page(new Page<>(pageNum, pageSize), queryWrapper);
+        if (goodsPage != null) {
+            return Result.success("查询成功", goodsPage);
+        }
+        return Result.error(CodeEnum.CODE_400.getCode(), "未查找到数据");
     }
 
     /**
      * 前台按照id查询商品
      *
      * @param id
-     * @return
+     * @return Result
      */
     @AuthAccess
     @GetMapping("/{id}")
     public Result findOne(@PathVariable Integer id) {
-        return Result.success("查询成功", goodsService.getById(id));
+        Goods goods = goodsService.getById(id);
+        if (goods != null) {
+            return Result.success("查询成功", goods);
+        }
+        return Result.error(CodeEnum.CODE_400.getCode(), "未查找到数据");
     }
 }
 

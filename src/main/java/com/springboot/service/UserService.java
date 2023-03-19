@@ -17,7 +17,7 @@ public interface UserService extends IService<User> {
      * 登录
      *
      * @param userDTO
-     * @return
+     * @return Result
      */
     Result login(UserDTO userDTO);
 

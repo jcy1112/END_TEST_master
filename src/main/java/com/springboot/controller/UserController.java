@@ -31,7 +31,7 @@ public class UserController {
      * 登录
      *
      * @param userDTO 用户信息
-     * @return
+     * @return Result
      */
     @PostMapping("/login")
     public Result login(@RequestBody UserDTO userDTO) {
@@ -49,13 +49,13 @@ public class UserController {
      * 新增或更新
      *
      * @param user 用户信息
-     * @return
+     * @return Result
      */
     @PostMapping
     public Result save(@RequestBody User user) {
         String username = user.getUsername();
         if ("".equals(username)) {
-            return Result.error(CodeEnum.CODE_400.getCode(), "参数错误");
+            return Result.error(CodeEnum.CODE_400.getCode(), "用户名不可修改");
         }
         if ("".equals(user.getNickname())) {
             user.setNickname(username);
@@ -75,7 +75,7 @@ public class UserController {
      * 通过id删除
      *
      * @param id
-     * @return
+     * @return Result
      */
     @DeleteMapping("/{id}")
     public Result delete(@PathVariable Integer id) {
@@ -90,38 +90,46 @@ public class UserController {
      * 批量删除
      *
      * @param ids
-     * @return
+     * @return Result
      */
     @PostMapping("/del/batch")
     public Result deleteBatch(@RequestBody List<Integer> ids) {
         boolean value = userService.removeByIds(ids);
         if (!value) {
-            return Result.error(CodeEnum.CODE_402.getCode(), "删除失败");
+            return Result.error(CodeEnum.CODE_402.getCode(), "批量删除失败");
         }
-        return Result.success("删除成功");
+        return Result.success("批量删除成功");
     }
 
 
     /**
      * 查询所有
      *
-     * @return
+     * @return Result
      */
     @GetMapping
     public Result findAll() {
-        return Result.success("查询成功", userService.list());
-    }
+        List<User> userList = userService.list();
+        if (userList != null) {
+            return Result.success("查询成功", userList);
+        }
+        return Result.error(CodeEnum.CODE_400.getCode(), "未查找到数据");
 
+    }
 
     /**
      * 通过id查找
      *
      * @param id
-     * @return
+     * @return Result
      */
     @GetMapping("/{id}")
     public Result findOne(@PathVariable Integer id) {
-        return Result.success("查询成功", userService.getById(id));
+        User user = userService.getById(id);
+        if (user != null) {
+            return Result.success("查询成功", user);
+        }
+        return Result.error(CodeEnum.CODE_400.getCode(), "未查找到数据");
     }
 
 
@@ -129,13 +137,17 @@ public class UserController {
      * 通过用户名查找
      *
      * @param username
-     * @return
+     * @return Result
      */
     @GetMapping("/username/{username}")
     public Result findByUsername(@PathVariable String username) {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("username", username);
-        return Result.success("查询成功", userService.getOne(queryWrapper));
+        User user = userService.getOne(queryWrapper);
+        if (user != null) {
+            return Result.success("查询成功", user);
+        }
+        return Result.error(CodeEnum.CODE_400.getCode(), "未查找到数据");
     }
 
 
@@ -147,7 +159,7 @@ public class UserController {
      * @param username 名字
      * @param email    邮箱
      * @param address  地址
-     * @return
+     * @return Result
      */
     @GetMapping("/page")
     public Result findPage(@RequestParam Integer pageNum,
@@ -166,7 +178,11 @@ public class UserController {
         if (!"".equals(address)) {
             queryWrapper.like("address", address);
         }
-        return Result.success("查询成功", userService.page(new Page<>(pageNum, pageSize), queryWrapper));
+        Page<User> userPage = userService.page(new Page<>(pageNum, pageSize), queryWrapper);
+        if (userPage != null) {
+            return Result.success("查询成功", userPage);
+        }
+        return Result.error(CodeEnum.CODE_400.getCode(), "未查找到数据");
     }
 
 }
