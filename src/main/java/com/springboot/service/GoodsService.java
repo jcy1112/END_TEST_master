@@ -4,9 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.springboot.entity.Goods;
 
 /**
- * <p>
- * 服务类
- * </p>
+ * 服务接口
  *
  * @author 文涛
  * @since 2023-03-04

@@ -6,7 +6,7 @@ import com.springboot.controller.dto.UserDTO;
 import com.springboot.entity.User;
 
 /**
- * 服务类
+ * 服务接口
  *
  * @author 文涛
  * @since 2023-03-04

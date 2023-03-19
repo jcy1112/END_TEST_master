@@ -15,8 +15,6 @@ import lombok.Setter;
 /**
  * 用户实体类
  *
- *
- *
  * @author 文涛
  * @since 2023-03-04
  */
