@@ -8,7 +8,7 @@ import com.springboot.common.CodeEnum;
 import com.springboot.common.Result;
 import com.springboot.controller.dto.UserDTO;
 import com.springboot.entity.User;
-import com.springboot.service.IUserService;
+import com.springboot.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -25,7 +25,7 @@ import java.util.List;
 public class UserController {
 
     @Resource
-    private IUserService userService;
+    private UserService userService;
 
     /**
      * 登录
@@ -40,8 +40,8 @@ public class UserController {
         if ("".equals(username) || "".equals(password)) {
             return Result.error(CodeEnum.CODE_400.getCode(), "参数错误");
         }
-        UserDTO dto = userService.login(userDTO);
-        return Result.success("登录成功！", dto);
+        Result result = userService.login(userDTO);
+        return result;
     }
 
 

@@ -1,5 +1,6 @@
 package com.springboot.common;
 
+import com.springboot.controller.dto.UserDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,6 +36,7 @@ public class Result {
     public static Result success(String msg, Object data) {
         return new Result(CodeEnum.CODE_200.getCode(), msg, data);
     }
+
 
     public static Result error(String code, String msg) {
         return new Result(code, msg, null);

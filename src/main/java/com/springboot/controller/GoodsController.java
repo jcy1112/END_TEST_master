@@ -3,7 +3,7 @@ package com.springboot.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.springboot.common.Result;
 import com.springboot.common.AuthAccess;
-import com.springboot.service.IGoodsService;
+import com.springboot.service.GoodsService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class GoodsController {
 
     @Resource
-    private IGoodsService goodsService;
+    private GoodsService goodsService;
 
     /**
      * 前台商品列表，

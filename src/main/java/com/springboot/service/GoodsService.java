@@ -11,6 +11,6 @@ import com.springboot.entity.Goods;
  * @author 文涛
  * @since 2023-03-04
  */
-public interface IGoodsService extends IService<Goods> {
+public interface GoodsService extends IService<Goods> {
 
 }

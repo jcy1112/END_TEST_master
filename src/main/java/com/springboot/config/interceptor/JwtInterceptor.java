@@ -10,7 +10,7 @@ import com.springboot.common.AuthAccess;
 import com.springboot.common.CodeEnum;
 import com.springboot.entity.User;
 import com.springboot.exception.ServiceException;
-import com.springboot.service.IUserService;
+import com.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 public class JwtInterceptor implements HandlerInterceptor {
 
     @Autowired
-    private IUserService userService;
+    private UserService userService;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
